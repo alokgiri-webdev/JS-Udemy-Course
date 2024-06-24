@@ -150,3 +150,64 @@ console.log(totals);
 let totalAverage = Math.floor(calcAverage(totals));
 console.log(totalAverage);
 */
+
+//----------------------------------Assignments-----------------------------//
+//Funtions
+/*
+function describeCountry(country, population, capitalCity) {
+  console.log(
+    `${country} has ${population} million people and its capital city is ${capitalCity}`
+  );
+}
+const country_1 = 'India';
+const country_2 = 'Pakistan';
+const country_3 = 'Nepal';
+let population_1 = 1.4;
+let population_2 = 0.25;
+let population_3 = 0.1;
+const capitalCity_1 = 'New Delhi';
+const capitalCity_2 = 'Islamabad';
+const capitalCity_3 = 'Kathmandu';
+let result_1 = describeCountry('India', 1.4, 'New Delhi');
+let result_2 = describeCountry(country_2, population_2, capitalCity_2);
+let result_3 = describeCountry(country_3, population_3, capitalCity_3);
+console.log(result_1);
+console.log(result_2);
+console.log(result_3);
+*/
+
+//Function Declarations vs. Expressions
+
+let worldPopulation = 7900;
+function percentageOfWorld1(countryPopulation) {
+  return (countryPopulation / 7900) * 100;
+}
+let country_1 = `India has a population ${Math.floor(
+  percentageOfWorld1(1450)
+)}% of world population`;
+console.log(country_1);
+
+const percentageOfWorld2 = function (countryPopulation) {
+  return (countryPopulation / 7900) * 100;
+};
+let country_2 = `Pakistan has a population ${Math.floor(
+  percentageOfWorld1(250)
+)}% of world population`;
+console.log(country_2);
+
+//Arrow Functions
+const percentageOfWorld3 = countryPopulation =>
+  (countryPopulation / 7900) * 100;
+let country_3 = `Nepal has a population ${Math.floor(
+  percentageOfWorld3(100)
+)}% of world population`;
+console.log(country_3);
+
+//Functions Calling Other Functions
+const describeCountry = function (country, population) {
+  return `${country} has ${population} million people, which is about ${Math.floor(
+    percentageOfWorld1(population)
+  )}% of the world`;
+};
+const result_1 = describeCountry('India', 1450);
+console.log(result_1);
