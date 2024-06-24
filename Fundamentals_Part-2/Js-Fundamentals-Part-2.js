@@ -177,7 +177,7 @@ console.log(result_3);
 */
 
 //Function Declarations vs. Expressions
-
+/*
 let worldPopulation = 7900;
 function percentageOfWorld1(countryPopulation) {
   return (countryPopulation / 7900) * 100;
@@ -211,3 +211,108 @@ const describeCountry = function (country, population) {
 };
 const result_1 = describeCountry('India', 1450);
 console.log(result_1);
+*/
+
+//Introduction to Arrays
+/*
+let indiaPop = 1450;
+let pakPop = 250;
+let nepalPop = 100;
+let bhutanPop = 50;
+const population = [indiaPop, pakPop, nepalPop, bhutanPop];
+if (population.length === 4) {
+  console.log(true);
+} else {
+  console.log(false);
+}
+const percentageOfWorld1 = function (countryPopulation) {
+  return (countryPopulation / 7900) * 100;
+};
+const percentages = [
+  percentageOfWorld1(indiaPop),
+  percentageOfWorld1(pakPop),
+  percentageOfWorld1(nepalPop),
+  percentageOfWorld1(bhutanPop),
+];
+console.log(percentages);
+*/
+
+//Basic Array Operations (Methods)
+/*
+const neighbours = [
+  'China',
+  'Pakistan',
+  'Myanmar',
+  'Nepal',
+  'Bhutan',
+  'Sri Lanka',
+];
+neighbours.push('Utopia');
+console.log(neighbours);
+neighbours.pop();
+console.log(neighbours);
+
+for (let i = 0; i < neighbours.length; i++) {
+  if (i != 'Germany') {
+    console.log('Not a central European country');
+  }
+}
+
+if (!neighbours.includes('Germany')) {
+  console.log('Not a central European country');
+}
+
+neighbours[1] = 'Republic of Pakistan';
+console.log(neighbours);
+*/
+
+//Introduction to Objects
+/*
+let myCountry = {
+  country: 'India',
+  language: 'Hindi',
+  capital: 'New Delhi',
+  population: 1450,
+  neighbours: ['China', 'Pakistan', 'Myanmar', 'Nepal', 'Bhutan', 'Sri Lanka'],
+};
+
+//Dot vs. Bracket Notation
+console.log(
+  `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`
+);
+
+myCountry.population = 1450 + 2;
+console.log(myCountry);
+myCountry['population'] = myCountry.population - 2;
+console.log(myCountry);
+*/
+
+//Object Methods
+/*
+myCountry = {
+  country: 'India',
+  language: 'Hindi',
+  capital: 'New Delhi',
+  population: 1450,
+  neighbours: ['China', 'Pakistan', 'Myanmar', 'Nepal', 'Bhutan', 'Sri Lanka'],
+  describe: function () {
+    return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`;
+  },
+};
+console.log(myCountry);
+console.log(myCountry.describe());
+myCountry.checkIsland = function () {
+  return (this.island =
+    this.neighbours.length >= 1 ? (this.island = false) : (this.island = true));
+};
+console.log(myCountry.checkIsland());
+console.log(myCountry);
+*/
+
+//Iteration: The for Loop
+/*
+const voters = 50;
+for (let i = 1; i <= voters; i++) {
+  console.log(`Voter-${i} is currently voting`);
+}
+*/
