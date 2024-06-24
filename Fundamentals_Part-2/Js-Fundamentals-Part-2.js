@@ -316,3 +316,38 @@ for (let i = 1; i <= voters; i++) {
   console.log(`Voter-${i} is currently voting`);
 }
 */
+
+//Looping Arrays, Breaking and Continuing
+/*
+let indiaPop = 1450;
+let pakPop = 250;
+let nepalPop = 100;
+let bhutanPop = 50;
+const population = [indiaPop, pakPop, nepalPop, bhutanPop];
+let percentages2 = [];
+
+const percentageOfWorld1 = function (countryPopulation) {
+  return (countryPopulation / 7900) * 100;
+};
+for (let i = 0; i < population.length; i++) {
+  percentages2.push(Math.floor(percentageOfWorld1(population[i])));
+}
+console.log(percentages2);
+*/
+
+//Looping Backwards and Loops in Loops
+/*
+let listOfNeighbours = [
+  ['Canada', 'Mexico'],
+  ['Spain'],
+  ['Norway', 'Sweden', 'Russia'],
+];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+  for (let j = 0; j < listOfNeighbours[i].length; j++) {
+    console.log(`Neighbour: ${listOfNeighbours[i][j]}`);
+  }
+}
+*/
+
+//The while Loop
