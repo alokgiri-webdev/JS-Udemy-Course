@@ -284,6 +284,8 @@ for (const [i, author] of allAuthors.entries()) {
 */
 
 //--------------------Enhanced Object Literals
+//9.1
+/*
 const bookData = [
   ['title', 'Computer Networking: A Top-Down Approach'],
   ['author', ['James F. Kurose', 'Keith W. Ross']],
@@ -296,6 +298,7 @@ const newBook = {
   // ...
 };
 
+//9.2
 const pages = 880;
 
 const newBook2 = {
@@ -304,3 +307,144 @@ const newBook2 = {
   pages,
 };
 console.log(newBook2);
+*/
+
+//---------------Optional Chaining (?.)
+//10.1
+/*Write a function called getFirstKeyword that takes the book object as an argument. This function should return the first keyword from the book's keywords property (array) or undefined (if the keywords property doesn't exist). It shouldn't throw an error. Use optional chaining for that.
+ */
+/*
+const newBook2 = {
+  title: 'The C Programming Language',
+  author: ['Brian W. Kernighan', 'Dennis M. Ritchie'],
+  pages: 244,
+};
+const getFirstKeyword = function (obj) {
+  console.log(obj.title ?? 'Hello');
+};
+
+getFirstKeyword(newBook2);
+*/
+
+//-------------------Looping Objects: Object Keys, Values and Entries
+//11.1
+/*
+Below is the entries variable that stores an empty array. Use the for-of loop together with the Object.keys() method to loop over the thirdParty.goodreads property (array) of the first book object from the books array. For each key, push a new array that contains that key to the entries array.
+
+In the end, the entries array should be filled with arrays containing keys:
+[['rating'], ['ratingsCount'], ['reviewsCount'], ['fiveStartRatingCount'], ['oneStartRatingCount']]
+*/
+/*
+const books = [
+  {
+    title: 'Algorithms-1',
+    author: ['Robert Sedgewick', 'Kevin Wayne'],
+    programmingLanguage: 'Java',
+    onlineContent: 0,
+    edition: 5,
+    highlighted: true,
+    thirdparty: {
+      goodreads: {
+        ratings: 3,
+        ratingsCount: 3,
+        reviewsCount: 3,
+        fiveStartRatingCount: 3,
+        oneStartRatingCount: 3,
+      },
+    },
+  },
+  {
+    title: 'Algorithms-2',
+    author: ['Robert', 'Kevin'],
+    programmingLanguage: 'JavaScript',
+    highlighted: true,
+  },
+  {
+    title: 'Algorithms-3',
+    author: ['Sedgewick', 'Wayne'],
+    highlighted: true,
+  },
+];
+
+const entries = [];
+for (const i of Object.keys(books[0].thirdparty.goodreads)) {
+  console.log(entries.push([i]));
+}
+*/
+
+//11.2
+/*Use the for-of loop together with the Object.values() method and Array's entries() method to loop over thirdParty.goodreads property of the first book from the books array.
+Push each value to the appropriate inner array in the entries array (use index from entries()).
+*/
+/*
+const books = [
+  {
+    title: 'Algorithms-1',
+    author: ['Robert Sedgewick', 'Kevin Wayne'],
+    programmingLanguage: 'Java',
+    onlineContent: 0,
+    edition: 5,
+    highlighted: true,
+    thirdparty: {
+      goodreads: {
+        ratings: 3,
+        ratingsCount: 3,
+        reviewsCount: 3,
+        fiveStartRatingCount: 3,
+        oneStartRatingCount: 3,
+      },
+    },
+  },
+];
+
+const properties = Object.values(books[0].thirdparty.goodreads).entries();
+console.log(properties);
+
+const entries = [];
+for (const [i, j] of properties) {
+  entries.push(j);
+}
+console.log(entries);
+
+//11.3
+const prop2 = Object.entries(books[0].thirdparty.goodreads);
+console.log(prop2);
+
+//11.4
+*/
+
+//------------------Sets
+//12.1
+/*
+let allKeywords = [];
+let Books = ['A', 'B', 'A', 'D', 'B', 'C'];
+allKeywords = [...new Set(Books)];
+console.log(allKeywords);
+*/
+//12.2 Done
+
+//12.3
+/*
+let allKeywords = ['Home', 'Business', 'Computer', 'Home', 'Business'];
+let uniqueKeywords = new Set(allKeywords);
+uniqueKeywords.delete('Business');
+console.log(uniqueKeywords);
+*/
+
+//12.4
+/*
+let allKeywords = ['Home', 'Business', 'Computer', 'Home', 'Business'];
+let uniqueKeywords = new Set(allKeywords);
+let uniqueKeywordsArr = [...uniqueKeywords];
+console.log(uniqueKeywordsArr);
+*/
+
+//12.5
+/*
+let allKeywords = ['Home', 'Business', 'Computer', 'Home', 'Business'];
+let uniqueKeywords = new Set(allKeywords);
+uniqueKeywords.clear();
+console.log(uniqueKeywords);
+*/
+
+//------------Maps Fundamentals
