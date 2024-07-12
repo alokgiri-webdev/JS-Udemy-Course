@@ -448,3 +448,113 @@ console.log(uniqueKeywords);
 */
 
 //------------Maps Fundamentals
+/*
+//13.1
+const Books = [
+  ['title', 'Clean Code'],
+  ['author', 'Robert C. Martin'],
+];
+const bookMap = new Map(Books);
+console.log(bookMap);
+
+//13.2
+bookMap.set('pages', 464);
+console.log(bookMap);
+
+//13.3
+console.log(`${bookMap.get('title')} by ${bookMap.get('author')}`);
+
+//13.4
+console.log(bookMap.size);
+
+//13.5
+if (bookMap.has('author')) {
+  console.log('The author of the book is known');
+}
+*/
+
+//----------MAP ITERATION
+/*
+//14.1
+const books = [
+  {
+    title: 'Algorithms-2',
+    author: ['Robert', 'Kevin'],
+    programmingLanguage: 'JavaScript',
+    highlighted: 45,
+  },
+];
+
+const firstBookMap = new Map(Object.entries(books[0]));
+console.log(firstBookMap);
+
+//14.2
+for (const [keys, values] of firstBookMap) {
+  if (typeof values === 'number') {
+    console.log(keys);
+  }
+}
+*/
+
+//------------Strings Part-1
+/*
+//15.1
+//15.2
+const quote =
+  'A computer once beat me at chess, but it was no match for me at kick boxing';
+console.log(quote.indexOf('chess'));
+//15.3
+console.log(quote.slice(quote.lastIndexOf(' ') + 1));
+console.log(quote.slice(1));
+//15.4
+const isContributor = function (author) {
+  return author.lastIndexOf('(Contributor)') !== -1;
+};
+console.log(isContributor('Julie Sussman (Contributor)'));
+*/
+
+//-------------Strings Part-2
+/*
+//16.1
+const normalizeAuthorName = function (author) {
+  author = author.trim();
+  let firstName = author.slice(0, author.indexOf(''));
+  let lastName = '';
+  if (author.indexOf('') === author.lastIndexOf('')) {
+    lastName = author.slice(author.lastIndexOf('') + 1, author.length);
+  } else {
+    lastName = author.slice(author.indexOf('') + 1, author.lastIndexOf(''));
+  }
+  let capitalizeFirstName =
+    firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
+  let capitalizeLastName =
+    lastName[0].toUpperCase() + lastName.slice(1).toLowerCase();
+  return capitalizeFirstName + '' + capitalizeLastName;
+};
+normalizeAuthorName('  JuliE sussMan (Contributor)');
+*/
+
+//16.2
+/*
+const bookCategories =
+  'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
+const categories = bookCategories.split(';');
+console.log(categories);
+//logBookCategories(bookCategories);
+*/
+
+//16.3
+/*
+function getKeywordsAsString(books) {
+  const keywords = [];
+
+  for (const book of books) {
+    keywords.push(...book.keywords);
+  }
+  console.log(keywords);
+
+  const uniqueKeywords = [...new Set(keywords)];
+
+  return uniqueKeywords.join(';');
+}
+*/
