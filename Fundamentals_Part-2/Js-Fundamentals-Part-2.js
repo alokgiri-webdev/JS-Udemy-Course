@@ -20,22 +20,6 @@ Ignore draws this time. Instead, log No team wins... to the console if there is 
 TEST DATA 1: Dolphins scored 44, 23, and 71. Koalas scored 65, 54, and 49.
 TEST DATA 2: Dolphins scored 85, 54, and 41. Koalas scored 23, 34, and 27.
 */
-/*
-let calcAverage = (score_1, score_2, score_3) =>
-  (score_1 + score_2 + score_3) / 3;
-let scoreDolphins = calcAverage(44, 23, 71);
-let scoreKoalas = calcAverage(65, 54, 49);
-let checkWinner = (avgDolphins, avgKoalas) => {
-  if (avgDolphins > 2 * avgKoalas) {
-    console.log(`Dolphins win (${avgDolphins} vs ${avgKoalas})`);
-  } else if (avgKoalas > 2 * avgDolphins) {
-    console.log(`Koalas win (${avgKoalas} vs ${avgDolphins})`);
-  } else {
-    console.log(`log No team wins...`);
-  }
-};
-checkWinner(scoreDolphins, scoreKoalas);
-*/
 
 //Challenge-2
 /*
@@ -47,22 +31,8 @@ Create an array called tips containing the tip value for each bill, calculated f
 BONUS: Create an array totals containing the total values, so the bill + tip.
 TEST DATA: 125, 555, and 44.
 */
-/*
-let calcTip = bill => (bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2);
-let bills = [125, 555, 44];
-let tips = [];
-for (let i = 0; i < bills.length; i++) {
-  tips.push(calcTip(bills[i]));
-}
-console.log(tips);
-let totals = [];
-for (let i = 0; i < bills.length; i++) {
-  totals[i] = bills[i] + tips[i];
-}
-console.log(totals);
-*/
 
-//Challenge-3
+//Challenge-3 (Solve using OOPs)
 /*Let's go back to Mark and John comparing their BMIs!
 This time, let's use objects to implement the calculations! Remember: BMI = mass / (height * height) (mass in kg and height in meters).
 Your tasks:
@@ -71,40 +41,6 @@ Create a calcBMI method on each object to calculate the BMI (the same method on 
 Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!".
 TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 m tall.
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
-*/
-/*
-let mark = {
-  fullname: 'Mark Miller',
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    let bmi = Math.floor(this.mass / this.height ** 2);
-    return bmi;
-  },
-};
-console.log(mark.calcBMI());
-
-let john = {
-  fullname: 'John Smith',
-  mass: 92,
-  height: 1.95,
-  calcBMI: function (mass, height) {
-    let bmi = Math.floor(this.mass / this.height ** 2);
-    return bmi;
-  },
-};
-console.log(john.calcBMI());
-
-let higherBMI =
-  mark.calcBMI() > john.calcBMI()
-    ? `${mark.fullname}'s BMI (${mark.calcBMI()}) is higher than ${
-        john.fullname
-      }'s (${john.calcBMI()})!`
-    : `${john.fullname}'s BMI (${john.calcBMI()}) is higher than ${
-        mark.fullname
-      }'s (${mark.calcBMI()})!`;
-
-console.log(higherBMI);
 */
 
 //Challenge-4
@@ -120,260 +56,30 @@ First, you will need to add up all values in the array. To do the addition, star
 To calculate the average, divide the sum you calculated before by the length of the array (because that's the number of elements).
 Call the function with the totals array.
 */
-/*
-let bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
-let calcTip = bill => (bill >= 50 && bill < 300 ? bill * 0.15 : bill * 0.2);
-let average;
-let tips = [];
-for (let i = 0; i < bills.length; i++) {
-  tips.push(calcTip(bills[i]));
-}
-console.log(tips);
-
-let sum = 0;
-let calcAverage = function (arr) {
-  for (let i = 0; i < arr.length; i++) {
-    sum = sum + arr[i];
-  }
-  return sum / arr.length;
-};
-
-let billsAverage = calcAverage(bills);
-console.log(billsAverage);
-
-let totals = [];
-for (let i = 0; i < bills.length; i++) {
-  totals[i] = bills[i] + tips[i];
-}
-console.log(totals);
-
-let totalAverage = Math.floor(calcAverage(totals));
-console.log(totalAverage);
-*/
 
 //----------------------------------Assignments-----------------------------//
 //Funtions
-/*
-function describeCountry(country, population, capitalCity) {
-  console.log(
-    `${country} has ${population} million people and its capital city is ${capitalCity}`
-  );
-}
-const country_1 = 'India';
-const country_2 = 'Pakistan';
-const country_3 = 'Nepal';
-let population_1 = 1.4;
-let population_2 = 0.25;
-let population_3 = 0.1;
-const capitalCity_1 = 'New Delhi';
-const capitalCity_2 = 'Islamabad';
-const capitalCity_3 = 'Kathmandu';
-let result_1 = describeCountry('India', 1.4, 'New Delhi');
-let result_2 = describeCountry(country_2, population_2, capitalCity_2);
-let result_3 = describeCountry(country_3, population_3, capitalCity_3);
-console.log(result_1);
-console.log(result_2);
-console.log(result_3);
-*/
 
 //Function Declarations vs. Expressions
-/*
-let worldPopulation = 7900;
-function percentageOfWorld1(countryPopulation) {
-  return (countryPopulation / 7900) * 100;
-}
-let country_1 = `India has a population ${Math.floor(
-  percentageOfWorld1(1450)
-)}% of world population`;
-console.log(country_1);
-
-const percentageOfWorld2 = function (countryPopulation) {
-  return (countryPopulation / 7900) * 100;
-};
-let country_2 = `Pakistan has a population ${Math.floor(
-  percentageOfWorld1(250)
-)}% of world population`;
-console.log(country_2);
 
 //Arrow Functions
-const percentageOfWorld3 = countryPopulation =>
-  (countryPopulation / 7900) * 100;
-let country_3 = `Nepal has a population ${Math.floor(
-  percentageOfWorld3(100)
-)}% of world population`;
-console.log(country_3);
 
 //Functions Calling Other Functions
-const describeCountry = function (country, population) {
-  return `${country} has ${population} million people, which is about ${Math.floor(
-    percentageOfWorld1(population)
-  )}% of the world`;
-};
-const result_1 = describeCountry('India', 1450);
-console.log(result_1);
-*/
 
 //Introduction to Arrays
-/*
-let indiaPop = 1450;
-let pakPop = 250;
-let nepalPop = 100;
-let bhutanPop = 50;
-const population = [indiaPop, pakPop, nepalPop, bhutanPop];
-if (population.length === 4) {
-  console.log(true);
-} else {
-  console.log(false);
-}
-const percentageOfWorld1 = function (countryPopulation) {
-  return (countryPopulation / 7900) * 100;
-};
-const percentages = [
-  percentageOfWorld1(indiaPop),
-  percentageOfWorld1(pakPop),
-  percentageOfWorld1(nepalPop),
-  percentageOfWorld1(bhutanPop),
-];
-console.log(percentages);
-*/
 
 //Basic Array Operations (Methods)
-/*
-const neighbours = [
-  'China',
-  'Pakistan',
-  'Myanmar',
-  'Nepal',
-  'Bhutan',
-  'Sri Lanka',
-];
-neighbours.push('Utopia');
-console.log(neighbours);
-neighbours.pop();
-console.log(neighbours);
-
-for (let i = 0; i < neighbours.length; i++) {
-  if (i != 'Germany') {
-    console.log('Not a central European country');
-  }
-}
-
-if (!neighbours.includes('Germany')) {
-  console.log('Not a central European country');
-}
-
-neighbours[1] = 'Republic of Pakistan';
-console.log(neighbours);
-*/
 
 //Introduction to Objects
-/*
-let myCountry = {
-  country: 'India',
-  language: 'Hindi',
-  capital: 'New Delhi',
-  population: 1450,
-  neighbours: ['China', 'Pakistan', 'Myanmar', 'Nepal', 'Bhutan', 'Sri Lanka'],
-};
 
-//Dot vs. Bracket Notation
-console.log(
-  `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`
-);
-
-myCountry.population = 1450 + 2;
-console.log(myCountry);
-myCountry['population'] = myCountry.population - 2;
-console.log(myCountry);
-*/
+// Dot Vs Bracket
 
 //Object Methods
-/*
-myCountry = {
-  country: 'India',
-  language: 'Hindi',
-  capital: 'New Delhi',
-  population: 1450,
-  neighbours: ['China', 'Pakistan', 'Myanmar', 'Nepal', 'Bhutan', 'Sri Lanka'],
-  describe: function () {
-    return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`;
-  },
-};
-console.log(myCountry);
-console.log(myCountry.describe());
-myCountry.checkIsland = function () {
-  return (this.island =
-    this.neighbours.length >= 1 ? (this.island = false) : (this.island = true));
-};
-console.log(myCountry.checkIsland());
-console.log(myCountry);
-*/
 
 //Iteration: The for Loop
-/*
-const voters = 50;
-for (let i = 1; i <= voters; i++) {
-  console.log(`Voter-${i} is currently voting`);
-}
-*/
 
 //Looping Arrays, Breaking and Continuing
-/*
-let indiaPop = 1450;
-let pakPop = 250;
-let nepalPop = 100;
-let bhutanPop = 50;
-const population = [indiaPop, pakPop, nepalPop, bhutanPop];
-let percentages2 = [];
-
-const percentageOfWorld1 = function (countryPopulation) {
-  return (countryPopulation / 7900) * 100;
-};
-for (let i = 0; i < population.length; i++) {
-  percentages2.push(Math.floor(percentageOfWorld1(population[i])));
-}
-console.log(percentages2);
-*/
 
 //Looping Backwards and Loops in Loops
-/*
-let listOfNeighbours = [
-  ['Canada', 'Mexico'],
-  ['Spain'],
-  ['Norway', 'Sweden', 'Russia'],
-];
-
-for (let i = 0; i < listOfNeighbours.length; i++) {
-  for (let j = 0; j < listOfNeighbours[i].length; j++) {
-    console.log(`Neighbour: ${listOfNeighbours[i][j]}`);
-  }
-}
-*/
 
 //The while Loop
-/*
-let indiaPop = 1450;
-let pakPop = 250;
-let nepalPop = 100;
-let bhutanPop = 50;
-const population = [indiaPop, pakPop, nepalPop, bhutanPop];
-let percentages2 = [];
-
-const percentageOfWorld1 = function (countryPopulation) {
-  return (countryPopulation / 7900) * 100;
-};
-*/
-/*
-for (let i = 0; i < population.length; i++) {
-  percentages2.push(Math.floor(percentageOfWorld1(population[i])));
-}
-console.log(percentages2);
-*/
-/*
-let i = 0;
-while (i < population.length) {
-  percentages2.push(Math.floor(percentageOfWorld1(population[i])));
-  i++;
-}
-console.log(percentages2);
-*/
