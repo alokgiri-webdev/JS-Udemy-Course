@@ -40,6 +40,91 @@ const getJson = function (url) {
   });
 };
 
+//console.log(getJson('https://api.spacexdata.com/v4'));
+console.log(getJson('https://api.spacexdata.com/v4/capsules'));
+console.log(getJson('https://api.spacexdata.com/v4/cores'));
+console.log(getJson('https://api.spacexdata.com/v4/launches/past'));
+
+// SpaceX Past Launches API URL
+const launchesUrl = 'https://api.spacexdata.com/v4/launches/past';
+
+// Fetch data from the SpaceX Past Launches API
+
+fetch(launchesUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to retrieve SpaceX launches data');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Filter for Falcon 9 launches, excluding Falcon 1
+    const falcon9Launches = data.filter(
+      launchData =>
+        launchData.links?.article?.includes('falcon-9') &&
+        !launchData.links?.article?.includes('falcon-1')
+    );
+
+    // Count of Falcon 9 launches
+    const falcon9LaunchCount = falcon9Launches.length;
+    console.log(
+      `Number of Falcon 9 launches (excluding Falcon 1): ${falcon9LaunchCount}`
+    );
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// SpaceX Past Launches API URL
+
+// Fetch data from the SpaceX Past Launches API
+/*
+fetch(launchesUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to retrieve SpaceX launches data');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Count missing landingPad values
+    const missingLandingPads = data.filter(
+      launch => launch[0].cores[0].landingPad === null
+    );
+    const missingLandingPadsCount = missingLandingPads.length;
+
+    console.log(
+      `Number of missing values in landingPad: ${missingLandingPadsCount}`
+    );
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+*/
+
+fetch(launchesUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to retrieve SpaceX launches data');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Count missing landingPad values
+    const missingLandingPads = data.filter(
+      launch => !launch.cores[0]?.landpad // Use optional chaining (?.) for safety
+    );
+
+    const missingLandingPadsCount = missingLandingPads.length;
+
+    console.log(
+      `Number of missing values in landingPad: ${missingLandingPadsCount}`
+    );
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
 //Get Country
 /*
 const getCountry = function (country) {
