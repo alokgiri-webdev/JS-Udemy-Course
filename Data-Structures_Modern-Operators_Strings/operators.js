@@ -337,7 +337,12 @@ Push each value to the appropriate inner array in the entries array (use index f
 
 //------------Maps Fundamentals
 //13.1
-
+/*
+[
+  ['title', 'Clean Code'],
+  ['author', 'Robert C. Martin'],
+];
+*/
 //13.2 got stuck here priviously. Don't put array inside (use .set() to set new pair)
 
 //13.3 got stuck here. Use .get()
