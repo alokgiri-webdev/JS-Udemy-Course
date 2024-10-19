@@ -248,12 +248,12 @@ const books = [
 //2.6 be careful.
 
 // Spread Operator
-//3.1
+//3.1 (Be careful)
 
 //3.2
 
 // Rest Patterns & Parameters
-//4.1
+//4.1 (Be careful)
 
 //4.2 (Be mindful in next time solving)
 
@@ -270,8 +270,11 @@ const books = [
 //-----------------Logical Assignments Operators
 //7.1
 
-//7.2 Look into this again later
-
+//7.2 Look into this again later (check with books.at(3))
+books.forEach(
+  book => book.thirdParty.goodreads.rating < 4.2 && (book.highlighted = false)
+);
+console.log(books);
 //------------------Looping Arrays: The for-of Loop
 //8.1 use reduce
 
