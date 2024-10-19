@@ -271,10 +271,7 @@ const books = [
 //7.1
 
 //7.2 Look into this again later (check with books.at(3))
-books.forEach(
-  book => book.thirdParty.goodreads.rating < 4.2 && (book.highlighted = false)
-);
-console.log(books);
+
 //------------------Looping Arrays: The for-of Loop
 //8.1 use reduce
 
@@ -283,20 +280,13 @@ console.log(books);
 //8.3
 
 //--------------------Enhanced Object Literals
-//9.1 (Convert Map to Object using For-Of loop & Object.fromEntries(map))
+//9.1 (Convert Map to Object using Object.fromEntries(map) & also write logic for fromEntries)
 /*
 const bookData = [
   ['title', 'Computer Networking: A Top-Down Approach'],
   ['author', ['James F. Kurose', 'Keith W. Ross']],
   ['publisher', 'Addison Wesley'],
 ];
-*/
-//Do the rest
-/*
-const newBook = {
-  [bookData[0][0]]: bookData[0][1],
-
-};
 */
 
 //9.2
@@ -309,10 +299,11 @@ const newBook2 = {
 };
 */
 
-//---------------Optional Chaining (?.)
-//10.1 Wasn't able to solve last time again last time
+//---------------Optional Chaining (?.) Check using getFirstKeyword(books.at(8))
+//10.1 (6 times wasn't able to solve)
 /*Write a function called getFirstKeyword that takes the book object as an argument. This function should return the first keyword from the book's keywords property (array) or undefined (if the keywords property doesn't exist). It shouldn't throw an error. Use optional chaining for that.
  */
+
 //-------------------Looping Objects: Object Keys, Values and Entries
 //11.1 This too
 /*
