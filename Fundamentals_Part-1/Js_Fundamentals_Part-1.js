@@ -19,6 +19,19 @@ TEST DATA 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1
 👋 OPTIONAL: You can watch my solution in video format in the next lecture
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
+const marksWeight = [78, 95];
+const marksHeight = [1.69, 1.88];
+const johnsWeight = [92, 85];
+const johnsHeight = [1.95, 1.76];
+const bmiMark_1 = Math.floor(marksWeight.at(0) / marksHeight.at(0) ** 2);
+const bmiMark_2 = Math.floor(marksWeight.at(1) / marksHeight.at(1) ** 2);
+console.log(bmiMark_1, bmiMark_2);
+const bmiJohn_1 = Math.floor(johnsWeight.at(0) / johnsHeight.at(0) ** 2);
+const bmiJohn_2 = Math.floor(johnsWeight.at(1) / johnsHeight.at(1) ** 2);
+console.log(bmiJohn_1, bmiJohn_2);
+const markHigherBMI_1 = bmiMark_1 > bmiJohn_1;
+const markHigherBMI_2 = bmiMark_2 > bmiJohn_2;
+console.log(markHigherBMI_1, markHigherBMI_2);
 
 //Challenge-2
 /*Use the BMI example from Challenge #1, and the code you already wrote, and improve it:
@@ -30,6 +43,11 @@ Note: Don't round the BMI values. Leave them as they are.
 👋 OPTIONAL: You can watch my solution in video format in the next lecture
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
+markHigherBMI_1
+  ? console.log(`Mark's BMI(${bmiMark_1}) is higher than John's(${bmiJohn_1})!`)
+  : console.log(
+      `John's BMI(${bmiJohn_1}) is higher than Mark's(${bmiMark_1})!`
+    );
 
 //Challenge-3
 /*There are two gymnastics teams: Dolphins and Koalas. They compete against each other 3 times. The winner with the highest average score wins a trophy!
@@ -41,7 +59,25 @@ Your tasks:
 "Both win the trophy" if their average scores are equal.
 TEST DATA: Dolphins scored 96, 108, and 89. Koalas scored 88, 91, and 110.
 */
-
+const dolphinsScores = [96, 108, 89];
+const koalasScores = [88, 91, 110];
+const avgDolphins = dolphinsScores.reduce(
+  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
+  0
+);
+console.log(avgDolphins);
+const avgKoalas = koalasScores.reduce(
+  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
+  0
+);
+console.log(avgKoalas);
+if (avgDolphins > avgKoalas) {
+  console.log('Dolphins win the trophy');
+} else if (avgDolphins < avgKoalas) {
+  console.log('Koalas win the trophy');
+} else {
+  console.log(`Both win the trophy`);
+}
 //Challenge-4
 /*Steven needs a very simple tip calculator for whenever he goes to eat in a restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and 300. If the value is different, the tip is 20%.
 Your tasks:
@@ -53,6 +89,13 @@ TEST DATA: Test with different bill values: 275, 40, and 430
 HINT: To calculate 20% of a value, simply multiply it by 20/100 = 0.2
 HINT 2: Value X is between 50 and 300, if it's >= 50 && <= 300 😉
 */
+const tipCalculator = bill => {
+  const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+  return `The bill was ${bill}, the tip was ${tip}, and the total value ${
+    bill + tip
+  }`;
+};
+console.log(tipCalculator(100));
 
 //---------------------Assignments-------------------------------//
 //VALUES & VARIABLES
