@@ -374,10 +374,27 @@ Push each value to the appropriate inner array in the entries array (use index f
 
 //-------------Strings Part-3
 //17.1
+/*
+const bookCategories =
+  'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
+console.log(logBookCategories(bookCategories));
+*/
 
 //17.2 check again (solve in a single line)
+//getKeywordsAsString(books);
 
 //17.3
+/*
+const bookChapters = [
+  ['The Basics', 14],
+  ['Sorting', 254],
+  ['Searching', 372],
+  ['Graphs', 526],
+  ['Strings', 706],
+];
+
+logBookChapters(bookChapters);
+*/
 
 //---------------------------CHALLENGES-----------------------------------------------------
 //Challenege-1
