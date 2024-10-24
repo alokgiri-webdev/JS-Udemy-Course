@@ -21,6 +21,38 @@ TEST DATA 1: Dolphins scored 44, 23, and 71. Koalas scored 65, 54, and 49.
 TEST DATA 2: Dolphins scored 85, 54, and 41. Koalas scored 23, 34, and 27.
 */
 
+const dolphinsScores_1 = [44, 23, 71];
+const koalasScores_1 = [65, 54, 49];
+const dolphinsScores_2 = [85, 54, 41];
+const koalasScores_2 = [23, 34, 27];
+
+const avgDolphins_1 = dolphinsScores_1.reduce(
+  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
+  0
+);
+const avgDolphins_2 = dolphinsScores_2.reduce(
+  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
+  0
+);
+console.log(avgDolphins_1, avgDolphins_2);
+const avgKoalas_1 = koalasScores_1.reduce(
+  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
+  0
+);
+const avgKoalas_2 = koalasScores_2.reduce(
+  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
+  0
+);
+console.log(avgKoalas_1, avgKoalas_2);
+
+if (avgDolphins_1 > 2 * avgKoalas_1) {
+  console.log(`Dolphins win ${avgDolphins_1} Vs. ${avgKoalas_1}`);
+} else if (avgKoalas_1 > 2 * avgDolphins_1) {
+  console.log(`Koalas win ${avgKoalas_1} Vs. ${avgDolphins_1}`);
+} else {
+  console.log(`Nobody wins`);
+}
+
 //Challenge-2
 /*
 Steven wants you to improve his tip calculator, using the same rules as before — tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%.
@@ -31,6 +63,13 @@ Create an array called tips containing the tip value for each bill, calculated f
 BONUS: Create an array totals containing the total values, so the bill + tip.
 TEST DATA: 125, 555, and 44.
 */
+const bills = [125, 555, 44];
+const calcTip = bill => {
+  const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+  return tip;
+};
+const tips = bills.map(bill => calcTip(bill));
+console.log(tips);
 
 //Challenge-3 (Solve using OOPs)
 /*Let's go back to Mark and John comparing their BMIs!
@@ -43,6 +82,39 @@ TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
 
+const mark = {
+  fullName: 'Mark Miller',
+  mass: 78,
+  height: 1.69,
+  calcBMI() {
+    this.bmiMark = Math.floor(this.mass / this.height ** 2);
+    return this.bmiMark;
+  },
+};
+const john = {
+  fullName: 'John Smith',
+  mass: 92,
+  height: 1.95,
+  calcBMI() {
+    this.bmiJohn = Math.floor(this.mass / this.height ** 2);
+    return this.bmiJohn;
+  },
+};
+
+mark.calcBMI();
+john.calcBMI();
+
+console.log(mark, john);
+
+if (john.bmiJohn > mark.bmiMark) {
+  console.log(
+    `John Smith's BMI (${john.bmiJohn}) is higher than Mark Miller's (${mark.bmiMark})!`
+  );
+} else {
+  console.log(
+    `Mark Miller's BMI (${mark.bmiMark}) is higher than Mark Miller's (${john.bmiJohn})!`
+  );
+}
 //Challenge-4
 /*Let's improve Steven's tip calculator even more, this time using loops!
 Your tasks:
@@ -56,7 +128,16 @@ First, you will need to add up all values in the array. To do the addition, star
 To calculate the average, divide the sum you calculated before by the length of the array (because that's the number of elements).
 Call the function with the totals array.
 */
-
+const bills2 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips2 = bills2.map(bill => calcTip(bill));
+console.log(tips2);
+const totals = bills2.map(bill => calcTip(bill) + bill);
+console.log(totals);
+const avgTotals = totals.reduce(
+  (acc, total, _, arr) => acc + total / arr.length,
+  0
+);
+console.log(avgTotals);
 //----------------------------------Assignments-----------------------------//
 //Funtions
 
