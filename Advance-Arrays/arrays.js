@@ -51,7 +51,23 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
-
+const juliaData1Original = [3, 5, 2, 12, 7];
+const juliaData2Original = [9, 16, 6, 8, 3];
+const juliaData1Copy = juliaData1Original.slice();
+const juliaData2Copy = juliaData2Original.slice();
+const juliaData1Final = juliaData1Copy.slice(1, -2);
+const juliaData2Final = juliaData2Copy.slice(1, -2);
+const kateData1Original = [4, 1, 15, 8, 3];
+const kateData2Original = [10, 5, 6, 1, 4];
+const checkDogs = (arr1, arr2) => {
+  const combinedArr = arr1.concat(arr2);
+  return combinedArr.forEach((dogAge, i) =>
+    dogAge < 3
+      ? console.log(`Dog number ${i + 1} is still a puppy 🐶`)
+      : console.log(`Dog number ${i + 1} is an adult`)
+  );
+};
+console.log(checkDogs(juliaData1Final, kateData1Original));
 // Coding Challenge #2
 /* 
 Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
@@ -68,6 +84,18 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
+const calcAverageHumanAge = arr => {
+  const avgHumanAge = arr
+    .map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4))
+    .filter(dogAge => dogAge > 18)
+    .reduce(
+      (acc, dogAge, _, arr1) => Math.round(acc + dogAge / arr1.length),
+      0
+    );
+  return avgHumanAge;
+};
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
 // Coding Challenge #3
 /* 
@@ -109,19 +137,57 @@ const dogs = [
 ];
 
 //1
-
+dogs.forEach(
+  dogData =>
+    (dogData.recommendedPortion = Math.floor(dogData.weight ** 0.75 * 28))
+);
+console.log(dogs);
 //2 (Solve by using find method)
+const sarahDog = dogs.find(dogAge => dogAge.owners.includes('Sarah'));
+console.log(sarahDog);
+sarahDog.curFood > sarahDog.recommendedPortion &&
+  console.log('Eating too much');
+sarahDog.curFood < sarahDog.recommendedPortion &&
+  console.log('Eating too little');
 
 //3 (Use filter & FlatMap) & 4(Use join)
+const ownersEatTooMuch = dogs
+  .filter(dogData => dogData.curFood > dogData.recommendedPortion)
+  .flatMap(dogData => dogData.owners);
+console.log(`${ownersEatTooMuch.join(' and ')} eat too much!`);
+
+const ownersEatTooLittle = dogs
+  .filter(dogData => dogData.curFood < dogData.recommendedPortion)
+  .flatMap(dogData => dogData.owners);
+console.log(ownersEatTooLittle);
 
 //5 (use some)
+console.log(
+  dogs.some(dogData => dogData.curFood === dogData.recommendedPortion)
+);
 
 //6
-
+console.log(
+  dogs.some(
+    dogData =>
+      dogData.curFood < dogData.recommendedPortion * 1.1 &&
+      dogData.curFood > dogData.recommendedPortion * 0.9
+  )
+);
 //7 Use filter
-
+console.log(
+  dogs.filter(
+    dogData =>
+      dogData.curFood < dogData.recommendedPortion * 1.1 &&
+      dogData.curFood > dogData.recommendedPortion * 0.9
+  )
+);
 //8 Note how to create shallow copy
-
+const dogsCopy = dogs.slice();
+const dogsSorted = dogsCopy.sort(
+  (a, b) => a.recommendedPortion - b.recommendedPortion
+);
+console.log(dogsSorted);
 //Revision
 //SLICE
 let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
