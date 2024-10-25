@@ -458,18 +458,28 @@ const game = {
 
 //Solution:
 //Task-1
-
+const [player1, player2] = game.players;
+console.log(player1, player2);
 //Task-2
-
+const [gk, ...fieldPlayers] = player1;
+console.log(gk, fieldPlayers);
 //Task-3
-
+const allPlayers = [...player1, ...player2];
+console.log(allPlayers);
 //Task-4
-
+const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
 //Task-5
-
+const { team1, x: draw, team2 } = game.odds;
+console.log(team1, draw, team2);
 //Task-6
-
+const printGoals = (...players) => {
+  console.log(players + ' ' + players.length);
+};
+printGoals('Thiago', 'Coutinho', 'Perisic');
 //Task-7
+game.odds.team1 < game.odds.team2 &&
+  console.log(`${game['team1']} is more likely to win`);
 
 //Challenge-2
 /*
@@ -488,12 +498,25 @@ Gnarby: 1, Hummels: 1, Lewandowski: 2
 */
 
 //Task-1
-
-//Task-2 Note: how to find the length of the Object : Object.keys(Obj).length
-
+game.scored.forEach((player, i) => console.log(`Goal ${i + 1}: ${player}`));
+//Task-2 Note: How to find the length of the Object : Object.keys(Obj).length
+const avgOdd = Object.values(game.odds).reduce(
+  (acc, odd, _, arr) => Math.floor(acc + odd / arr.length),
+  0
+);
+console.log(avgOdd);
 //Task-3 Note: got stuck last time
-
+for (const [key, value] of Object.entries(game.odds)) {
+  console.log(
+    `Odd of ${key === 'x' ? 'draw' : `victory ${game[key]}`}: ${value}`
+  );
+}
 //Task-4 (Bonus) check again
+const scorers = {};
+for (const key of game.scored) {
+  scorers[key] ? scorers[key]++ : (scorers[key] = 1);
+}
+console.log(scorers);
 
 //Challenege-3
 /*
@@ -522,13 +545,25 @@ const gameEvents = new Map([
 ]);
 
 //Task-1
-
+const events = [...new Set(gameEvents.values())];
+console.log(events);
 //Task-2
-
+gameEvents.delete(64);
+console.log(gameEvents);
 //Task-3
-
+const lastEevntMin = [...gameEvents.keys()].pop();
+console.log(lastEevntMin);
+const gameEventsLength = [...gameEvents.keys()].length;
+console.log(gameEventsLength);
+console.log(
+  `An event happened every ${Math.floor(lastEevntMin / gameEventsLength)} mins`
+);
 //Task-4
-
+gameEvents.forEach((value, key) =>
+  console.log(
+    `${key <= 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${key}: ${value}`
+  )
+);
 //Challenege-4
 /*
 Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
@@ -559,15 +594,39 @@ const formalName = [
   'delayed_departure',
 ];
 
+formalName.forEach((str, i) => {
+  const [first, second] = str.split('_');
+  const output = `${first}${second[0].toUpperCase() + second.slice(1)}`;
+  console.log(output.padEnd(20, ' ') + '✅'.repeat(i + 1));
+});
+
 //Challenge 5 Bonus
 // String Methods Practice
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+/*Desired Output is below*/
 // 🔴 Delayed Departure from FAO to TXL (11h25)
 //              Arrival from BRU to FAO (11h45)
 //   🔴 Delayed Arrival from HEL to FAO (12h05)
 //            Departure from FAO to LIS (12h30)
+
+/*Solution is below*/
+const flight = flights.split('+');
+console.log(flight);
+
+const extractStr = str => {
+  return str.slice(0, 3).toUpperCase();
+};
+
+flight.forEach(str => {
+  const [type, from, to, time] = str.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''} ${type.replaceAll(
+    '_',
+    ' '
+  )} from ${extractStr(from)} to ${extractStr(to)} (${time.replace(':', 'h')})`;
+  console.log(output.padStart(50));
+});
 
 //Bonus
 // Write a name shortner function which takes long names from API short it to 10 characters and then ...
