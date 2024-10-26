@@ -12,10 +12,66 @@ GOOD LUCK 😀
 */
 
 //Solve using Construction function
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(this.speed);
+  return this;
+};
+Car.prototype.brake = function () {
+  this.speed -= 10;
+  console.log(this.speed);
+  return this;
+};
+
+const bmw = new Car('BMW', 90);
+console.log(bmw);
+console.log(bmw.accelerate().accelerate().accelerate().brake());
 
 //Solve using ES6 way
+const CarES6 = class {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  accelerate() {
+    this.speed += 10;
+    console.log(this.speed);
+    return this;
+  }
+  brake() {
+    this.speed -= 10;
+    console.log(this.speed);
+    return this;
+  }
+};
+const bmwES6 = new CarES6('BMW', 90);
+console.log(bmwES6);
+console.log(bmwES6.accelerate().accelerate().accelerate().brake());
 
 //Solve using Object.create() way
+const ObjectCar = {
+  init(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  },
+  accelerate() {
+    this.speed += 10;
+    console.log(this.speed);
+    return this;
+  },
+  brake() {
+    this.speed -= 10;
+    console.log(this.speed);
+    return this;
+  },
+};
+const bmwObject = Object.create(ObjectCar);
+console.log(bmwObject.init('BMW', 90));
+console.log(bmwObject.accelerate().accelerate().accelerate().brake());
 
 // Coding Challenge #2
 /* 
@@ -28,7 +84,36 @@ DATA CAR 1: 'Ford' going at 120 km/h
 
 GOOD LUCK 😀
 */
+const Gaadi = class {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  accelerate() {
+    this.speed += 10;
+    console.log(this.speed);
+    return this;
+  }
+  brake() {
+    this.speed -= 10;
+    console.log(this.speed);
+    return this;
+  }
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+    console.log(this.speed);
+  }
+  get speedUS() {
+    console.log(this.speed);
+    return this.speed / 1.6;
+  }
+};
 
+const merc = new Gaadi('Mercedes', 90);
+console.log(merc);
+merc.speedUS = 50;
+console.log(merc.speedUS);
+console.log(merc);
 // Coding Challenge #3
 /* 
 1. Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property);
