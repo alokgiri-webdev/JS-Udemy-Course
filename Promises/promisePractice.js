@@ -1,213 +1,150 @@
 'use strict';
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
+//https://restcountries.com/v3.1/name/india
+//https://restcountries.com/v3.1/alpha/${neighbour}
 
-//RENDER COUNTRY
-const renderCountry = function (data, className = '') {
-  const html = `<article class="country ${className}">
-    <img class="country__img" src="${data.flags.png}" />
-    <div class="country__data">
-      <h3 class="country__name">${data.altSpellings.at(1)}</h3>
-      <h4 class="country__region">${data.region}</h4>
-      <p class="country__row">
-        <span>👫</span>${+(data.population / 1000000).toFixed(1)}
-      </p>
-      <p class="country__row">
-        <span>🗣️</span>${Object.values(data.languages)[0]}
-      </p>
-      <p class="country__row">
-        <span>💰</span>${data.currencies[Object.keys(data.currencies)[0]].name}
-      </p>
-    </div>
-  </article>`;
+//Render Country
+const renderCountry = function (data) {
+  const html = `<article class="country">
+          <img class="country__img" src="${data.flags.png}" />
+          <div class="country__data">
+            <h3 class="country__name">${data.altSpellings[1]}</h3>
+            <h4 class="country__region">${data.region}</h4>
+            <p class="country__row"><span>👫</span>${(
+              +data.population / 1_000_000
+            ).toFixed(2)}</p>
+            <p class="country__row"><span>🗣️</span>${
+              Object.values(data.languages)[0]
+            }</p>
+            <p class="country__row"><span>💰</span>${
+              data.currencies[Object.keys(data.currencies)[0]].name
+            }</p>
+          </div>
+        </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
 };
 
-//RENDER ERROR
-const renderError = function (message) {
-  countriesContainer.insertAdjacentText('beforeend', html);
-  countriesContainer.style.opacity = 1;
+/*
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data[0]);
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then(res => res.json())
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`${err}`))
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
-
-//GetJson function (converted to Async await)
-const getJson = function (url) {
+getCountryData('india');
+*/
+/*
+const getJson = function (url, errorMessage = 'Something went wrong') {
   return fetch(url).then(res => {
     if (!res.ok) {
-      throw new Error(`Something went wrong ${res.status}`);
+      throw new Error(`${errmessage} ${res.status}`);
     }
     return res.json();
   });
 };
 
-//console.log(getJson('https://api.spacexdata.com/v4'));
-console.log(getJson('https://api.spacexdata.com/v4/capsules'));
-console.log(getJson('https://api.spacexdata.com/v4/cores'));
-console.log(getJson('https://api.spacexdata.com/v4/launches/past'));
-
-// SpaceX Past Launches API URL
-const launchesUrl = 'https://api.spacexdata.com/v4/launches/past';
-
-// Fetch data from the SpaceX Past Launches API
-
-fetch(launchesUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to retrieve SpaceX launches data');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Filter for Falcon 9 launches, excluding Falcon 1
-    const falcon9Launches = data.filter(
-      launchData =>
-        launchData.links?.article?.includes('falcon-9') &&
-        !launchData.links?.article?.includes('falcon-1')
-    );
-
-    // Count of Falcon 9 launches
-    const falcon9LaunchCount = falcon9Launches.length;
-    console.log(
-      `Number of Falcon 9 launches (excluding Falcon 1): ${falcon9LaunchCount}`
-    );
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-// SpaceX Past Launches API URL
-
-// Fetch data from the SpaceX Past Launches API
-/*
-fetch(launchesUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to retrieve SpaceX launches data');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Count missing landingPad values
-    const missingLandingPads = data.filter(
-      launch => launch[0].cores[0].landingPad === null
-    );
-    const missingLandingPadsCount = missingLandingPads.length;
-
-    console.log(
-      `Number of missing values in landingPad: ${missingLandingPadsCount}`
-    );
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-*/
-
-fetch(launchesUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to retrieve SpaceX launches data');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Count missing landingPad values
-    const missingLandingPads = data.filter(
-      launch => !launch.cores[0]?.landpad // Use optional chaining (?.) for safety
-    );
-
-    const missingLandingPadsCount = missingLandingPads.length;
-
-    console.log(
-      `Number of missing values in landingPad: ${missingLandingPadsCount}`
-    );
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-//Get Country
-/*
-const getCountry = function (country) {
+const getCountryData = function (country) {
   getJson(`https://restcountries.com/v3.1/name/${country}`)
     .then(data => {
       console.log(data[0]);
       renderCountry(data[0]);
-
-      const neighbour = data[0].borders?.[0];
-
+      const neighbour = data[0].borders[0];
       return getJson(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
     .then(data => {
-      console.log(data[0]);
-      renderCountry(data[0], 'neighbour');
+      console.log(data);
+      renderCountry(data[0]);
     })
-    .catch(err => {
-      console.error(`${err}`);
-      renderError(`Something went wrong ${err.message} Please Try Again!`);
+    .catch(err => console.error(`${err}`))
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
     });
 };
-btn.addEventListener('click', () => getCountry('India'));
+getCountryData('india');
 */
-//Creating a Promise
 
-//Promisifying a setTimeout function
-
-//Async Await
-const getCountry = async function (country) {
+/*
+const getCountryData = async function (
+  country,
+  errMessage = 'Something went wrong'
+) {
   try {
-    const [data] = await getJson(
+    const response = await fetch(
       `https://restcountries.com/v3.1/name/${country}`
     );
-
-    console.log(data);
-    renderCountry(data);
-
-    const neighbour = data.borders?.[0];
-
-    if (!neighbour) {
-      throw new Error(`No neighbour country`);
+    if (!response.ok) {
+      throw new Error(`${errMessage} ${response.status}`);
     }
-    const [neighbourCountry] = await getJson(
+    const [data] = await response.json();
+    renderCountry(data);
+    const neighbour = data.borders[0];
+    const res = await fetch(
       `https://restcountries.com/v3.1/alpha/${neighbour}`
     );
-
-    console.log(neighbourCountry);
-    renderCountry(neighbourCountry, 'neighbour');
+    if (!res.ok) {
+      throw new Error(`${errMessage} ${response.status}`);
+    }
+    const [data2] = await res.json();
+    renderCountry(data2);
   } catch (err) {
-    console.error(err.message);
-    renderError(`Something went wrong ${err.message} Please Try Again!`);
+    console.error(`${err.message}`);
 
     throw err;
   }
 };
-btn.addEventListener('click', () => getCountry('India'));
+getCountryData('india');
+*/
 
-//Creating new Promise
+// Creating a Promise (Also see how to convert in a async await by promisifying)
 const lotteryPromise = new Promise((resolve, reject) => {
-  console.log('Your LotteryTicket');
+  console.log(`Your lottery draw is happening`);
   setTimeout(() => {
-    if (Math.random() <= 0.5) {
-      resolve('You win!');
+    if (Math.random() >= 0.5) {
+      resolve('You won!');
     } else {
-      reject(new Error('You lose'));
+      reject(new Error('You loose'));
     }
-  }, 1000);
-})
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
+  }, 2000);
+});
 
-//Promisifying the setTimeOut
+lotteryPromise
+  .then(res => console.log(res))
+  .catch(err => console.error(`${err.message}`));
+
+// Promisifying the setTimeout
 const wait = function (seconds) {
   return new Promise(resolve => {
     setTimeout(resolve, seconds * 1000);
   });
 };
-wait(2)
-  .then(res => {
+
+async function waitData() {
+  try {
+    await wait(2);
     console.log('I waited for 2 seconds');
-    return wait(1);
-  })
-  .then(res => console.log(`I waited for 1 more second`));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+waitData();
+
 // Coding Challenge 1
 /* 
 In this challenge you will build a function 'whereAmI' which renders a country ONLY based on GPS coordinates. For that, you will use a second API to geocode coordinates.
