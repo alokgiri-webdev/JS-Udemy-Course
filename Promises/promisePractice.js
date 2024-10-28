@@ -112,6 +112,7 @@ getCountryData('india');
 */
 
 // Creating a Promise (Also see how to convert in a async await by promisifying)
+/*
 const lotteryPromise = new Promise((resolve, reject) => {
   console.log(`Your lottery draw is happening`);
   setTimeout(() => {
@@ -126,8 +127,10 @@ const lotteryPromise = new Promise((resolve, reject) => {
 lotteryPromise
   .then(res => console.log(res))
   .catch(err => console.error(`${err.message}`));
+*/
 
 // Promisifying the setTimeout
+/*
 const wait = function (seconds) {
   return new Promise(resolve => {
     setTimeout(resolve, seconds * 1000);
@@ -144,7 +147,7 @@ async function waitData() {
 }
 
 waitData();
-
+*/
 // Coding Challenge 1
 /* 
 In this challenge you will build a function 'whereAmI' which renders a country ONLY based on GPS coordinates. For that, you will use a second API to geocode coordinates.
@@ -170,3 +173,19 @@ TEST COORDINATES 2: -33.933, 18.474
 GOOD LUCK 😀
 */
 //Solving .then way
+
+const getJson = function (url, errMessage = 'Something went wrong') {
+  return fetch(url).then(res => {
+    if (!res.ok) {
+      throw new Error(`${errMessage} ${res.status}`);
+    }
+    return res.json();
+  });
+};
+
+const whereAmI = function (lat, lng) {
+  getJson(`https://geocode.xyz/${lat},${lng}?geoit=json`).then(data =>
+    console.log(data.city)
+  );
+};
+console.log(whereAmI(52.508, 13.381));
