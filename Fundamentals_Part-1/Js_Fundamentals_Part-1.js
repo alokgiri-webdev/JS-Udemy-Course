@@ -19,19 +19,6 @@ TEST DATA 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1
 👋 OPTIONAL: You can watch my solution in video format in the next lecture
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
-const marksWeight = [78, 95];
-const marksHeight = [1.69, 1.88];
-const johnsWeight = [92, 85];
-const johnsHeight = [1.95, 1.76];
-const bmiMark_1 = Math.floor(marksWeight.at(0) / marksHeight.at(0) ** 2);
-const bmiMark_2 = Math.floor(marksWeight.at(1) / marksHeight.at(1) ** 2);
-console.log(bmiMark_1, bmiMark_2);
-const bmiJohn_1 = Math.floor(johnsWeight.at(0) / johnsHeight.at(0) ** 2);
-const bmiJohn_2 = Math.floor(johnsWeight.at(1) / johnsHeight.at(1) ** 2);
-console.log(bmiJohn_1, bmiJohn_2);
-const markHigherBMI_1 = bmiMark_1 > bmiJohn_1;
-const markHigherBMI_2 = bmiMark_2 > bmiJohn_2;
-console.log(markHigherBMI_1, markHigherBMI_2);
 
 //Challenge-2
 /*Use the BMI example from Challenge #1, and the code you already wrote, and improve it:
