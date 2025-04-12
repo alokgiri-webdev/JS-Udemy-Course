@@ -54,26 +54,6 @@ GOOD LUCK 😀
 
 //Solution:
 
-const juliaData1Original = [3, 5, 2, 12, 7];
-const juliaData2Original = [9, 16, 6, 8, 3];
-const juliaData1Final = juliaData1Original.slice().slice(1,-2);
-const juliaData2Final = juliaData2Original.slice().slice(1,-2);
-const kate1 = [4, 1, 15, 8, 3];
-const kate2 = [10, 5, 6, 1, 4];
-const juliaKate1 = [...juliaData1Final,...kate1];
-const juliaKate2 = [...juliaData2Final,...kate2];
-//juliaKate1.forEach((dogAge,i)=>{dogAge > 3 ? console.log(`Dog number ${i+1} is adult`): console.log(`Dog number ${i+1} is Puppy 🐶`);
-//});
-
-
-function CheckDogs(dogsJulia,dogsKate){
- const correctedJulia = dogsJulia.slice(1,-2);
- console.log(correctedJulia);
- const dogsJulia_dogsKate = [...correctedJulia, ...dogsKate];
- dogsJulia_dogsKate.forEach((dogsAge,i)=> dogsAge>3 ? console.log(`Dog number ${i+1} is ${dogsAge} adult`): console.log(`Dog number ${i+1} is ${dogsAge} Puppy 🐶`));
-}
-CheckDogs(juliaData1Original,kate1);
-
 // Coding Challenge #2
 /* 
 Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
@@ -90,6 +70,14 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
+//Solution:
+function calcAverageHumanAge(dogsJulia,dogsKate){
+  const correctedJulia = dogsJulia.slice(1,-2);
+  const allDogs = [...correctedJulia,...dogsKate];
+  const humanAge = allDogs.map((dogsAge)=> dogsAge <= 2 ? 2*dogsAge: (16 + dogsAge*4) ).filter((age)=> age>18).reduce((acc,age,_,arr)=> acc + age/arr.length,0);
+  console.log(humanAge);
+}
+calcAverageHumanAge([3, 5, 2, 12, 7],[4, 1, 15, 8, 3]);
 
 
 // Coding Challenge #3
