@@ -20,6 +20,7 @@ TEST DATA 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
 
+
 //Challenge-2
 /*Use the BMI example from Challenge #1, and the code you already wrote, and improve it:
 1. Print a nice output to the console, telling the user who has the higher BMI. The message can be either:
@@ -30,11 +31,7 @@ Note: Don't round the BMI values. Leave them as they are.
 👋 OPTIONAL: You can watch my solution in video format in the next lecture
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
-markHigherBMI_1
-  ? console.log(`Mark's BMI(${bmiMark_1}) is higher than John's(${bmiJohn_1})!`)
-  : console.log(
-      `John's BMI(${bmiJohn_1}) is higher than Mark's(${bmiMark_1})!`
-    );
+
 
 //Challenge-3
 /*There are two gymnastics teams: Dolphins and Koalas. They compete against each other 3 times. The winner with the highest average score wins a trophy!
@@ -46,25 +43,7 @@ Your tasks:
 "Both win the trophy" if their average scores are equal.
 TEST DATA: Dolphins scored 96, 108, and 89. Koalas scored 88, 91, and 110.
 */
-const dolphinsScores = [96, 108, 89];
-const koalasScores = [88, 91, 110];
-const avgDolphins = dolphinsScores.reduce(
-  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
-  0
-);
-console.log(avgDolphins);
-const avgKoalas = koalasScores.reduce(
-  (acc, mov, _, arr) => Math.floor(acc + mov / arr.length),
-  0
-);
-console.log(avgKoalas);
-if (avgDolphins > avgKoalas) {
-  console.log('Dolphins win the trophy');
-} else if (avgDolphins < avgKoalas) {
-  console.log('Koalas win the trophy');
-} else {
-  console.log(`Both win the trophy`);
-}
+
 //Challenge-4
 /*Steven needs a very simple tip calculator for whenever he goes to eat in a restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and 300. If the value is different, the tip is 20%.
 Your tasks:
@@ -76,24 +55,76 @@ TEST DATA: Test with different bill values: 275, 40, and 430
 HINT: To calculate 20% of a value, simply multiply it by 20/100 = 0.2
 HINT 2: Value X is between 50 and 300, if it's >= 50 && <= 300 😉
 */
-const tipCalculator = bill => {
-  const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-  return `The bill was ${bill}, the tip was ${tip}, and the total value ${
-    bill + tip
-  }`;
-};
-console.log(tipCalculator(100));
+
 
 //---------------------Assignments-------------------------------//
 //VALUES & VARIABLES
+const country = "India";
+const continent = "Asia";
+let population = 1500;
+console.log(country, continent, population);
 //Data Types
+const isLand = false;
+let language;
+console.log(typeof isLand);
 //let, const & var
+language = "Assamese";
+console.log(language);
 //Basic Operators
+let halfPopulation = population/2;
+console.log(halfPopulation);
+halfPopulation++;
+console.log(halfPopulation);
+let finlandPopulation = 6;
+let ifIndiaPopulationMore = population > finlandPopulation;
+console.log(ifIndiaPopulationMore);
+const description = `${country} is in ${continent}, and its ${population} million people speak ${language}`;
 //Strings & Template Literals
 //same
 //Taking Decisions: if / else Statements
+if(population>33){
+  console.log(`${country}'s population is ${Math.abs(33-population)} million below average`);
+}
 //Type Conversion and Coercion
+console.log('9' - '5'); // 4?
+console.log('19' - '13' + '17'); // 617?
+console.log('19' - '13' + 17); // 23?
+console.log('123' < 57); // false ?
+console.log(5 + 6 + '4' + 9 - 4 - 2); // 1143?
 //Equality Operators: == vs. ===
+/*
+const numNeighbour = Number(prompt(`How many neighbour countries does your contry have?`));
+if(numNeighbour === 1){
+  console.log('Only 1 border');
+}else if(numNeighbour>1){
+  console.log('More than 1 border');
+}else{
+  console.log('No border');
+};
+*/
 //Logical Operators
+if(language === 'English' && population<50 && isLand){
+  console.log(`${country} is an ideal country to stay`);
+}else{
+  console.log(`${country} is not an ideal country to stay`);
+}
 //The switch Statement
+switch (language) {
+  case ("chinese" || "mandarin"):
+    console.log('MOST number of native speakers!');
+    break;
+
+  case ('spanish'):
+    console.log('2nd place in number of native speakers');
+    break;
+
+  case ('english'):
+    console.log('3rd place in number of native speakers');
+    break;
+
+  default:
+    console.log('Great language too');
+}
+
 //The Conditional (Ternary) Operator
+console.log(`${country}'s population is ${population>33 ? 'above':'below'} average`);

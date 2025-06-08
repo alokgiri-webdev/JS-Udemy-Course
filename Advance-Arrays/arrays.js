@@ -114,31 +114,20 @@ const dogs = [
 ];
 
 //1
- dogs.forEach((dog,i)=>dog.recommendedFoods = Math.trunc(dog.weight**0.75*28));
- console.log(dogs);
+ 
 //2 (Solve by using find & includes method)
-const sarahDog = dogs.find((dog)=> dog.owners.includes('Sarah'));
-console.log(sarahDog);
-sarahDog.curFood > sarahDog.recommendedFoods ? console.log(`Its eating too much`) : console.log(`Its eating too little`); 
+
 //3 (Use filter & FlatMap)
-const ownersEatTooMuch = dogs.filter((dog)=>dog.curFood > dog.recommendedFoods).flatMap((dog)=> dog.owners);
-const ownersEatTooLittle = dogs.filter((dog)=>dog.curFood < dog.recommendedFoods).flatMap((dog)=> dog.owners);
-console.log(ownersEatTooMuch, ownersEatTooLittle);
+
 // 4(Use join)
-console.log(`${ownersEatTooMuch.join(', ')}'s Dog eat too much`);
-console.log(`${ownersEatTooLittle.join(', ')}'s Dog eat too little`);
+
 //5 (use some)
-console.log(dogs.some((dog)=> dog.curFood === dog.recommendedFoods));
+
 //6
-console.log(dogs.some((dog)=> dog.curFood >= dog.recommendedFoods*0.9 && dog.curFood <= dog.recommendedFoods*1.10));
+
 //7 Use filter
-const dogsEatingOkayAmount = dogs.filter((dog)=> dog.curFood >= dog.recommendedFoods*0.9 && dog.curFood <= dog.recommendedFoods*1.10);
-console.log(dogsEatingOkayAmount);
+
 //8 Note how to create shallow copy
-const dogsCopy = dogs.slice();
-console.log(dogsCopy);
-const dogsAscending = dogsCopy.sort((a,b)=>a.recommendedFoods-b.recommendedFoods);
-console.log(dogsAscending);
 
 //Revision
 //SLICE

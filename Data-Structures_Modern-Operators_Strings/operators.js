@@ -227,38 +227,64 @@ const books = [
 
 //---------------------DESTRUCTURING ARRAYS
 //1.1
-
+const [firstBook, secondBook] = books;
+console.log(firstBook);
+console.log(secondBook);
 //1.2
-
+const [, ,thirdBook] = books;
+console.log(thirdBook);
 //1.3
-
+const ratings = [['rating', 4.19], ['ratingsCount', 144584]];
+const [[,rating], [,ratingsCount]] = ratings;
+console.log(rating, ratingsCount);
 //1.4
-
+const ratingStars = [63405, 1808];
+const [one, two, three=0] = ratingStars;
+console.log(one, two, three);
 //----------------------DESTRUCTURING OBJECTS
 //2.1
-
+const {title,author,ISBN} = books.at(0);
+console.log(title, author, ISBN);
 //2.2
-
+const {keywords:tags} = books.at(0);
+console.log(tags);
 //2.3
-
+const {language,programmingLanguage='unknown'} = books.at(6);
+console.log(language,programmingLanguage);
 //2.4 (Always check its solution)
-
+let bookTitle = 'unknown';
+let bookAuthor = 'unknown';
+({title: bookTitle, author: bookAuthor} = books[0]);
+console.log(bookTitle, bookAuthor);
 //2.5 (You get stuck here: Always remember how nested object is reached)
-
+const {thirdParty:{goodreads:{rating:bookRating}}} = books.at(0);
+console.log(bookRating);
 //2.6 be careful.
-
+const printBookInfo = function({title,author,year='year unknown'}){
+  console.log(`${title} by ${author}, ${year}`);
+};
+printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick', year: '2011' });
 // Spread Operator
 //3.1 (Be careful)
-
+const bookAuthors = [...books.at(0).author,...books.at(1).author];
+console.log(bookAuthors);
 //3.2
-
+const spellWord = function(string){
+  return console.log(...string);
+};
+spellWord('Javascript');
 // Rest Patterns & Parameters
 //4.1 (Be careful)
-
+const [mainKeyword, ...rest] = books.at(0).keywords;
+console.log(mainKeyword, rest);
 //4.2 (Be mindful in next time solving)
-
+const{publisher:bookPublisher,...restOfTheBook} = books.at(1)
+console.log(bookPublisher, restOfTheBook);
 //4.3
-
+const printBookAuthorsCount = function(title, ...authors){
+console.log(`The book ${title} has ${authors.length} authors`);
+}
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
 //------------Short Circuiting
 //5.1
 
