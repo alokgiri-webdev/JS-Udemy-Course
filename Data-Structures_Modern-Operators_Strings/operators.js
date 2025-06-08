@@ -287,49 +287,79 @@ console.log(`The book ${title} has ${authors.length} authors`);
 printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
 //------------Short Circuiting
 //5.1
-
+const hasExamplesInJava = function({programmingLanguage}){
+  return programmingLanguage === 'Java' || 'No data available';
+}
+console.log(hasExamplesInJava(books[0]));
 //5.2
-
+for(let i=0; i<books.length; i++){
+books.at(i).onlineContent === true && console.log(`${books.at(i).title} provides online content`); 
+}
 //--------------The Nullish Coalescing Operator (??)
 //6.1
-
+for(let i=0; i<books.length; i++){
+books.at(i).onlineContent ?? console.log(`${books.at(i).title}" provides no data about its online content`);
+}
 //-----------------Logical Assignments Operators
 //7.1
-
+for(let i=0; i<books.length; i++){
+  books.at(i).edition||=1;
+}
 //7.2 Look into this again later (check with books.at(3))
-
+for(let i=0; i<books.length; i++){
+  books.at(i).highlighted &&= !(books.at(i).thirdParty.goodreads.rating < 4.2);
+}
 //------------------Looping Arrays: The for-of Loop
 //8.1 use reduce
-
+let pageSum = 0;
+for(const book of books){
+pageSum += book.pages
+}
+console.log(pageSum);
 //8.2 use flatMap
-
+const allAuthors = [];
+for(const book of books){
+  if(typeof book.author === 'string'){
+allAuthors.push(book.author);
+  }else{
+    for(const author of book.author){
+allAuthors.push(author);
+    }
+  }
+}
+console.log(allAuthors);
 //8.3
-
+for(const [index,author] of allAuthors.entries()){
+console.log(`${index+1}. ${author}`);
+}
 //--------------------Enhanced Object Literals
 //9.1 (Convert Map to Object using Object.fromEntries(map) & also write logic for fromEntries)
-/*
+
 const bookData = [
   ['title', 'Computer Networking: A Top-Down Approach'],
   ['author', ['James F. Kurose', 'Keith W. Ross']],
   ['publisher', 'Addison Wesley'],
 ];
-*/
+const bookDataObject = Object.fromEntries(bookData);
+console.log(bookDataObject);
 
 //9.2
-/*
 const pages = 880;
 const newBook2 = {
   title: 'The C Programming Language',
   author: ['Brian W. Kernighan', 'Dennis M. Ritchie'],
-  //
+  pages,
 };
-*/
+console.log(newBook2);
 
 //---------------Optional Chaining (?.) Check using getFirstKeyword(books.at(8))
 //10.1 (6 times wasn't able to solve)
 /*Write a function called getFirstKeyword that takes the book object as an argument. This function should return the first keyword from the book's keywords property (array) or undefined (if the keywords property doesn't exist). It shouldn't throw an error. Use optional chaining for that.
- */
-
+*/
+const getFirstKeyword = function({keywords}){
+return console.log(keywords?.at(0));
+}
+getFirstKeyword(books.at(0));
 //-------------------Looping Objects: Object Keys, Values and Entries
 //11.1 This too
 /*
